@@ -34,7 +34,6 @@ export default function RegisterForm() {
       setError({});
       await dispatch(registerAsync(input)).unwrap();
       toast.success("register successfully");
-      onSuccess();
     } catch (err) {
       toast.error(err);
     }
