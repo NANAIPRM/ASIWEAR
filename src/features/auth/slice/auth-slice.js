@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as authService from "../../../api/auth-api";
-import { setAccessToken } from "../../../utils/localstorage";
+import { removeAccessToken, setAccessToken } from "../../../utils/localstorage";
 
 const initialState = {
   isAuthenticated: false,
@@ -9,8 +9,8 @@ const initialState = {
   initialLoading: false,
 };
 
-export const registerAsync = createAsyncThunk(
-  "auth/registerAsync",
+export const register = createAsyncThunk(
+  "auth/register",
   async (input, thunkApi) => {
     try {
       const res = await authService.register(input);
@@ -33,6 +33,17 @@ export const login = createAsyncThunk("auth/login", async (input, thunkApi) => {
     return thunkApi.rejectWithValue(err.response.data.message);
   }
 });
+export const fetchMe = createAsyncThunk("auth/fetchMe", async (_, thunkApi) => {
+  try {
+    const res = await authService.fetchMe();
+    return res.data.user;
+  } catch (err) {
+    return thunkApi.rejectWithValue(err.response.data.message);
+  }
+});
+export const logout = createAsyncThunk("auth/logout", async () => {
+  removeAccessToken();
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -40,15 +51,15 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(registerAsync.pending, (state) => {
+      .addCase(register.pending, (state) => {
         state.initialLoading = true;
       })
-      .addCase(registerAsync.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.isAuthenticated = true;
         state.initialLoading = false;
         state.user = action.payload;
       })
-      .addCase(registerAsync.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.error = action.payload;
         state.initialLoading = false;
       })
@@ -56,6 +67,22 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.initialLoading = false;
         state.user = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.isAuthenticated = false;
+        state.user = null;
+      })
+      .addCase(fetchMe.fulfilled, (state, action) => {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.initialLoading = false;
+      })
+      .addCase(fetchMe.rejected, (state, action) => {
+        state.error = action.payload;
+        state.initialLoading = false;
+      })
+      .addCase(fetchMe.pending, (state) => {
+        state.initialLoading = true;
       }),
 });
 

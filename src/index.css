@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    background-color: white;
-    font-family: "Rubik", sans-serif;
-  }
+body {
+  background-color: white;
+  font-family: "Rubik", sans-serif;
 }

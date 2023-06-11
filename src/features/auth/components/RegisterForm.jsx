@@ -4,7 +4,7 @@ import { useState } from "react";
 import validateRegister from "../validator/validate-register";
 import InputErrorMessage from "./InputErrorMessage";
 import { toast } from "react-toastify";
-import { registerAsync } from "../slice/auth-slice";
+import { register } from "../slice/auth-slice";
 import { useDispatch } from "react-redux";
 
 const initialInput = {
@@ -32,7 +32,7 @@ export default function RegisterForm() {
         return setError(result);
       }
       setError({});
-      await dispatch(registerAsync(input)).unwrap();
+      await dispatch(register(input)).unwrap();
       toast.success("register successfully");
     } catch (err) {
       toast.error(err);
@@ -40,7 +40,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="w-full bg-[#59FFC3] shadow-[0_0_15px_rgb(0_0_0_/0.2)]  flex flex-col  justify-center items-center p-4 gap-5 border-solid border-2 border-black h-full">
+    <div className="w-full bg-[#59FFC3] shadow-[0_0_15px_rgb(0_0_0_/0.2)]  flex flex-col  justify-center items-center p-4 gap-5 border-solid border-2 border-black ">
       <h1 className="text-xl">Sign Up</h1>
       <form action="" className="w-[50%]" onSubmit={handleSubmitForm}>
         <div className="grid gap-5 ">

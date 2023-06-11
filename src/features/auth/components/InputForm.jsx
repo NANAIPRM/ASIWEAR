@@ -9,6 +9,7 @@ export default function LoginInput({
   id,
   type,
   accept,
+  multiple,
 }) {
   const className = createClasses(
     "rounded-lg p-1 w-full mt-2 border-soild border-2 border-black",
@@ -26,6 +27,7 @@ export default function LoginInput({
       onChange={onChange}
       id={id}
       accept={accept}
+      multiple={multiple}
     />
   );
 }

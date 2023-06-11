@@ -1,9 +1,9 @@
 import Header from "../layouts/Headers";
 export default function HomePage() {
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className="flex w-[95vw] mx-auto h-[85vh]">
+      <div className="flex w-[95vw] mx-auto h-[90vh] items-center">
         <div className="w-1/2 flex justify-center items-center ">
           <div className="flex flex-col gap-5">
             <p className="text-[#E54D4D] text-3xl">PROMOTION</p>
@@ -19,7 +19,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className=" w-1/2 bg-[url(https://wallpaperaccess.com/full/512763.jpg)] flex items-center justify-center  rounded-md">
+        <div className=" w-1/2  h-1/2 bg-[url(https://wallpaperaccess.com/full/512763.jpg)] flex items-center justify-center  rounded-md">
           <img
             src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
             alt="ISlBbS.png"

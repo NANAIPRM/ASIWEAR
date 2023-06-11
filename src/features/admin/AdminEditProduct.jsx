@@ -1,33 +1,56 @@
-import AdminSidebar from "../../layouts/AdminSidebar";
+import React, { useState, useEffect } from "react";
 import LabelForm from "../auth/components/LabelForm";
 import InputForm from "../auth/components/InputForm";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { editProductById, getProductById } from "../auth/slice/product-slice";
+import AdminSidebar from "../../layouts/AdminSidebar";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addProducts } from "../auth/slice/product-slice";
-import { useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
-import { useSelector } from "react-redux";
 
-const initialInput = {
-  productName: "",
-  price: "",
-  discountPrice: "",
-  description: "",
-  sizeS: 0,
-  sizeM: 0,
-  sizeL: 0,
-  img1: null,
-  img2: null,
-  img3: null,
-  gender: "male",
-};
-
-export default function AdminAddProduct() {
-  const [input, setInput] = useState(initialInput);
-  const loading = useSelector((state) => state.product.loading);
+export default function AdminEditProduct() {
+  const { productId } = useParams();
 
   const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.productItem);
+  const loading = useSelector((state) => state.product.loading);
+
+  const initialInput = {
+    productName: "",
+    price: "",
+    discountPrice: "",
+    description: "",
+    sizeS: 0,
+    sizeM: 0,
+    sizeL: 0,
+    img1: null,
+    img2: null,
+    img3: null,
+    gender: "",
+  };
+
+  const [input, setInput] = useState(initialInput);
+
+  useEffect(() => {
+    dispatch(getProductById(productId));
+  }, []);
+
+  useEffect(() => {
+    setInput({
+      productName: product?.productName ?? "",
+      price: product?.price ?? "",
+      discountPrice: product?.discountPrice ?? "",
+      description: product?.description ?? "",
+      sizeS: product?.sizeS ?? 0,
+      sizeM: product?.sizeM ?? 0,
+      sizeL: product?.sizeL ?? 0,
+      img1: product?.img1 ?? null,
+      img2: product?.img2 ?? null,
+      img3: product?.img3 ?? null,
+      gender: product?.gender ?? "",
+    });
+  }, [product]);
 
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -55,31 +78,36 @@ export default function AdminAddProduct() {
       formData.append("gender", input.gender);
 
       if (
-        input.productName &&
-        input.price &&
-        input.discountPrice &&
-        input.description &&
-        input.img1 &&
-        input.img2 &&
-        input.img3 &&
+        input.productName ||
+        input.price ||
+        input.sizeS ||
+        input.sizeM ||
+        input.sizeL ||
+        input.discountPrice ||
+        input.description ||
+        input.img1 ||
+        input.img2 ||
+        input.img3 ||
         input.gender
       ) {
-        await dispatch(addProducts(formData));
-        toast.success("Add product successfully");
+        await dispatch(editProductById({ id: productId, input: formData }));
+        setInput(input);
+        toast.success("Edit product successfully");
       } else {
         toast.error("Please fill in all required fields");
       }
-    } catch (error) {
-      toast.error(error);
+    } catch (err) {
+      toast.error(err.message);
     }
   };
+
   if (loading) {
     return <Loading />;
   }
 
   return (
     <div>
-      <div className="flex  h-[100vh]">
+      <div className="flex max-h-max">
         <AdminSidebar />
         <div className="flex w-[90vw] mt-5 h-full bg-green-200 justify-center items-center p-2 border-solid border-2 border-black">
           <div className="w-full flex items-center">
@@ -217,7 +245,7 @@ export default function AdminAddProduct() {
               </div>
 
               <button className="text-xl text-white p-2 rounded-lg bg-black">
-                ADD PRODUCT
+                CONFIRM
               </button>
 
               <Link

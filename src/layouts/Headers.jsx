@@ -9,10 +9,12 @@ export default function Header() {
   const user = useSelector((state) => state.auth.user);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
   const handleClickToLogin = () => {
     if (!isAuthenticated) {
       navigate("/login");
     }
+
     setOpen(!open);
   };
 
@@ -20,9 +22,13 @@ export default function Header() {
     navigate("/");
   };
 
+  const handleChickToShop = () => {
+    navigate("/shop");
+  };
+
   return (
-    <div className="relative top-0 z-10 min-h-max">
-      <div className="flex justify-between items-center h-[5vh] w-[95vw] mx-auto  mt-5 mb-10 ">
+    <div className="relative top-0 z-10 h-full">
+      <div className="flex justify-between items-center h-[5vh] w-[95vw] mx-auto  pt-10 mb-10 ">
         <div className="invisible">
           <button>SHOP</button>
           <button>WISHLISTS</button>
@@ -34,22 +40,27 @@ export default function Header() {
           <h1 className=" text-3xl">S I WEAR</h1>
         </button>
         <div className="flex  gap-10 items-center">
-          <button>SHOP</button>
+          <button onClick={handleChickToShop}>SHOP</button>
           <button>
             <WishListIcon />
           </button>
           <button>
             <CartIcon />
           </button>
-          <button onClick={handleClickToLogin}>
-            <UserIcon />
-          </button>
+          {isAuthenticated ? (
+            <button onClick={handleClickToLogin}>{user.firstName}</button>
+          ) : (
+            <button onClick={handleClickToLogin}>
+              <UserIcon />
+            </button>
+          )}
+
+          {isAuthenticated && open && (
+            <div className="absolute bottom-1 right-4 top-14">
+              <Dropdown setOpen={setOpen} />
+            </div>
+          )}
         </div>
-        {open && (
-          <div className="absolute bottom-1 right-4 top-10">
-            <Dropdown />
-          </div>
-        )}
       </div>
     </div>
   );

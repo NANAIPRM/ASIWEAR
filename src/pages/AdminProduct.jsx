@@ -1,19 +1,37 @@
 import AdminSidebar from "../layouts/AdminSidebar";
-import Headers from "../layouts/Headers";
+
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchAllProducts } from "../features/auth/slice/product-slice";
+import AdminProductList from "./AdminProductList";
+import Loading from "../components/Loading";
 
 export default function AdminProduct() {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/admin/handleproduct");
   };
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.product.products);
+  const loading = useSelector((state) => state.product.loading);
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <div>
-        <Headers />
-        <div className="flex mt-[-20px] ">
+        <div className="flex max-h-max">
           <AdminSidebar />
-          <div className="w-[90vw]  max-h-min bg-green-200 flex flex-col justify-center gap-5 p-4 border-solid border-2 border-black ">
+          <div className="w-[90vw] mt-5 bg-green-200 flex flex-col  gap-5 p-4 border-solid border-2 border-black  ">
             <button
               className="text-xl text-white p-2 rounded-lg bg-black w-1/6"
               onClick={handleClick}
@@ -21,158 +39,16 @@ export default function AdminProduct() {
               ADD PRODUCT
             </button>
             <div className="border-solid border-2 border-black">
-              <div className="w-full grid grid-cols-8 bg-slate-300  text-center">
-                <p>Product Id</p>
-                <p>Product Name</p>
-                <p>Price/pcs</p>
-                <p>Size</p>
-                <p>Stock</p>
-                <p>Sale(pcs)</p>
+              <div className="w-full grid grid-cols-8 bg-slate-300  text-center pt-4">
+                <br />
+                <br />
+                <p className=" font-semibold">Product Name</p>
+                <p className=" font-semibold">Price/pcs</p>
+                <p className=" font-semibold">S</p>
+                <p className=" font-semibold">M</p>
+                <p className=" font-semibold">L</p>
               </div>
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
-              <div className="w-full grid grid-cols-8 bg-slate-300 justify-center text-center items-center">
-                <p>1</p>
-                <div className="flex justify-center items-center">
-                  <img
-                    src="https://sv1.picz.in.th/images/2023/06/07/ISlBbS.png"
-                    alt=""
-                    className="w-[100px] h-[100px]"
-                  />
-                  <p>Product Name</p>
-                </div>
-                <p>300</p>
-                <p>S</p>
-                <p>30</p>
-                <p>22</p>
-                <button className="bg-slate-400 m-4 rounded-lg">EDIT</button>
-                <button className="bg-red-400 m-4 rounded-lg">DELETE</button>
-              </div>
-              <hr />
+              <AdminProductList products={products} />
             </div>
           </div>
         </div>

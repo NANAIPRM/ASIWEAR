@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import validateLogin from "../validator/validate-login";
 import InputErrorMessage from "./InputErrorMessage";
+import { fetchAllProducts } from "../slice/product-slice";
 
 const initialInput = {
   email: "",
@@ -19,7 +20,6 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -33,12 +33,14 @@ export default function LoginForm() {
       }
       setError({});
       await dispatch(login(input)).unwrap();
+      await dispatch(fetchAllProducts());
       toast.success("login successfully");
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       toast.error(err);
     }
   };
+
   return (
     <div className="w-full flex flex-col items-center p-4 gap-5">
       <h1 className="text-xl">Login</h1>

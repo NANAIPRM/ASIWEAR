@@ -5,9 +5,11 @@ import Loading from "./components/Loading";
 
 function App() {
   const initialLoading = useSelector((state) => state.auth.initialLoading);
+
   if (initialLoading) {
     return <Loading />;
   }
+
   return (
     <div>
       <Router />

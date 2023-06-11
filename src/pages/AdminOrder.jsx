@@ -11,20 +11,19 @@ export default function AdminOrder() {
   return (
     <>
       <div>
-        <Headers />
-        <div className="flex mt-[-20px]">
+        <div className="flex  h-[100vh] ">
           <AdminSidebar />
-          <div className="w-[90vw]  max-h-min bg-green-200 flex flex-col justify-center gap-5 p-4 border-solid border-2 border-black ">
+          <div className="w-[90vw]  h-full mt-5 bg-green-200 flex flex-col  gap-5 p-4 border-solid border-2 border-black ">
             <div className="flex grid-cols-3">
-              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4">
+              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4 mt-0">
                 <h1 className="text-3xl">Total Order</h1>
                 <p className="text-2xl">10</p>
               </div>
-              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4">
+              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4 mt-0">
                 <h1 className="text-3xl">Success</h1>
                 <p className="text-2xl">5</p>
               </div>
-              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4">
+              <div className="bg-[#59FFC3] h-[15vh] w-1/3 flex flex-col justify-center items-center border-solid border-2 gap-5 border-black m-4 mt-0">
                 <h1 className="text-3xl">Waiting</h1>
                 <p className="text-2xl">5</p>
               </div>

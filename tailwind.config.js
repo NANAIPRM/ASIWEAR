@@ -4,5 +4,16 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+
+  // daisyUI config (optional - here are the default values)
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+    base: true,
+    styled: true,
+    utils: true,
+    rtl: false,
+    prefix: "",
+    logs: true,
+  },
 };

@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <div>
       <Header />
-      <div className="mx-auto  flex  items-center justify-center w-[95vw] h-[80vh]">
+      <div className="mx-auto  flex  items-center justify-center w-[95vw] h-[90vh]">
         <LoginForm />
         <RegisterForm />
       </div>
