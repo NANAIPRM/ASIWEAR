@@ -6,11 +6,11 @@ export default function ShopItem({ products }) {
   };
   return (
     <button
-      className="mb-10 card w-96 bg-base-100 shadow-xl h-[750px]"
+      className="mb-10 card w-96 bg-base-100 shadow-xl h-[500px]"
       onClick={handleClick}
     >
-      <figure className="">
-        <img src={products.img2} className="object-top" />
+      <figure className="overflow-hidden">
+        <img src={products.img2} className=" object-fill  relative top-24" />
       </figure>
 
       <div className="card-body flex flex-col justify-between">

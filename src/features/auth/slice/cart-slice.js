@@ -18,6 +18,40 @@ export const createCart = createAsyncThunk(
   }
 );
 
+export const getAllCartByUserId = createAsyncThunk(
+  "cart/allcart",
+  async (_, thunkApi) => {
+    try {
+      const res = await cartService.getAllCartByUserId();
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const deleteCartItem = createAsyncThunk(
+  "cart/delete",
+  async (id, thunkApi) => {
+    try {
+      await cartService.deleteCartItem(id);
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const updateCartItem = createAsyncThunk(
+  "cart/update",
+  async ({ id, input }, thunkApi) => {
+    try {
+      await cartService.updateCartItem(id, input);
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -30,10 +64,21 @@ const cartSlice = createSlice({
       })
       .addCase(createCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.carts = action.payload;
         state.error = null;
       })
       .addCase(createCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getAllCartByUserId.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllCartByUserId.fulfilled, (state, action) => {
+        state.loading = false;
+        state.carts = action.payload;
+      })
+      .addCase(getAllCartByUserId.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

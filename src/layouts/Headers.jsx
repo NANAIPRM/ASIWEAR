@@ -1,5 +1,5 @@
 import { CartIcon, UserIcon, WishListIcon } from "../icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
@@ -44,9 +44,9 @@ export default function Header() {
           <button>
             <WishListIcon />
           </button>
-          <button>
+          <Link to="/cart">
             <CartIcon />
-          </button>
+          </Link>
           {isAuthenticated ? (
             <button onClick={handleClickToLogin}>{user.firstName}</button>
           ) : (

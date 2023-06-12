@@ -10,6 +10,9 @@ import Container from "../layouts/Container";
 import AdminProtectedRoute from "../features/auth/components/AdminProtectedRoute";
 import Shop from "../pages/Shop";
 import ShopItemDetail from "../pages/ShopItemDetail";
+import Cart from "../pages/Cart";
+import ProtectedRoute from "../features/auth/components/ProtectedRoute";
+import Information from "../pages/Information";
 
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -32,6 +35,22 @@ const router = createBrowserRouter([
       {
         path: "/productdetail/:productId",
         element: <ShopItemDetail />,
+      },
+      {
+        path: "/cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/information",
+        element: (
+          <ProtectedRoute>
+            <Information />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/admin/order",

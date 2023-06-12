@@ -6,12 +6,15 @@ import { getProductById } from "../features/auth/slice/product-slice";
 import { Link } from "react-router-dom";
 import { createCart } from "../features/auth/slice/cart-slice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function ShopItemDetail() {
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const product = useSelector((state) => state.product.productItem);
   const loading = useSelector((state) => state.product.loading);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("S");
@@ -26,11 +29,14 @@ export default function ShopItemDetail() {
         size: size,
         quantity: quantity,
       };
-
-      await dispatch(createCart({ id: productId, input: data })).unwrap();
-      toast.success("Add cart successfully");
-      setQuantity(1);
-      setSize("S");
+      if (isAuthenticated) {
+        await dispatch(createCart({ id: productId, input: data })).unwrap();
+        toast.success("Add cart successfully");
+        setQuantity(1);
+        setSize("S");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       toast.error(error);
     }
