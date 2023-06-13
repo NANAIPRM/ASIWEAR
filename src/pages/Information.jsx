@@ -8,9 +8,12 @@ import AddressLabel from "../features/auth/components/LabelForm";
 import AddressInput from "../features/auth/components/InputForm";
 import { getAllCartByUserId } from "../features/auth/slice/cart-slice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Information() {
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   const [addressData, setAddressData] = useState({
     addressLine1: "",
@@ -34,6 +37,7 @@ export default function Information() {
     try {
       await addAddress(addressData);
       toast.success("Add address successfully");
+      navigate("/payment");
     } catch (error) {
       toast.error("Failed to add address");
     }
@@ -68,15 +72,16 @@ export default function Information() {
   }
 
   return (
-    <div className="flex mx-auto w-[90vw] justify-center items-center mt-10 gap-20">
-      <div className="w-2/4 flex flex-col gap-10">
-        <div className="bg-[#59FFC3] rounded-lg shadow-lg px-10 flex-col items-center justify-center">
-          <div className="text-5xl relative bottom-10">INFORMATION</div>
+    <div className="flex mx-auto w-[90vw] justify-center items-center  gap-20">
+      <div className="w-2/4 flex flex-col gap-10 mt-10">
+        <div className="bg-[#59FFC3] rounded-lg shadow-lg px-10 flex-col items-center justify-center ">
+          <div className="text-5xl">CONTACT</div>
           <div className="text-xl">
             Name : {user.firstName} {user.lastName}
           </div>
-          <div className="mb-10 text-xl">Email : {user.email} </div>
+          <div className="text-xl">Email : {user.email} </div>
         </div>
+        <p className="text-4xl">SHIPPING ADDRESS</p>
         <form
           onSubmit={handleSubmit}
           className="h-full w-full flex flex-col gap-10"
@@ -137,10 +142,13 @@ export default function Information() {
               />
             </div>
           </div>
-          <div>
+          <div className="flex flex-col w-full gap-5 mb-10">
             <button type="submit" className="btn btn-neutral w-full">
               CONTINUE PAYMENT
             </button>
+            <Link to="/cart" className="btn btn-error w-full ">
+              BACK TO CART
+            </Link>
           </div>
         </form>
       </div>
@@ -154,11 +162,11 @@ export default function Information() {
         <div className="flex flex-col w-full mb-10 px-20">
           <div className="flex justify-between">
             <div>YOUR SAVE</div>
-            <div>{yourSave}</div>
+            <div>{yourSave} THB</div>
           </div>
           <div className="flex justify-between">
             <div>TOTAL</div>
-            <div>{totalPrice}</div>
+            <div>{totalPrice} THB</div>
           </div>
         </div>
       </div>

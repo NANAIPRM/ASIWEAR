@@ -9,3 +9,7 @@ const configWithAuthorization = {
 export const addAddress = (input) => {
   return axios.post("address/create", input, configWithAuthorization);
 };
+
+export const getAddressByUserId = () => {
+  return axios.get("address/me", configWithAuthorization);
+};

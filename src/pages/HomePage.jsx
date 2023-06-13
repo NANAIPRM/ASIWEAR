@@ -1,5 +1,10 @@
 import Header from "../layouts/Headers";
+import { useNavigate } from "react-router-dom";
 export default function HomePage() {
+  const navigate = useNavigate();
+  const handleToShop = () => {
+    navigate("/shop");
+  };
   return (
     <div className="">
       <Header />
@@ -13,7 +18,10 @@ export default function HomePage() {
               <p className="text-xl line-through ">THB 5,000</p>
             </div>
             <div>
-              <button className="text-xl text-white p-2 rounded-lg bg-black">
+              <button
+                className="text-xl text-white p-2 rounded-lg bg-black"
+                onClick={handleToShop}
+              >
                 SHOP NOW
               </button>
             </div>

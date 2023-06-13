@@ -64,7 +64,7 @@ export default function AdminAddProduct() {
         input.img3 &&
         input.gender
       ) {
-        await dispatch(addProducts(formData));
+        await dispatch(addProducts(formData)).unwrap();
         toast.success("Add product successfully");
       } else {
         toast.error("Please fill in all required fields");
@@ -79,7 +79,7 @@ export default function AdminAddProduct() {
 
   return (
     <div>
-      <div className="flex  h-[100vh]">
+      <div className="flex  max-h-max">
         <AdminSidebar />
         <div className="flex w-[90vw] mt-5 h-full bg-green-200 justify-center items-center p-2 border-solid border-2 border-black">
           <div className="w-full flex items-center">

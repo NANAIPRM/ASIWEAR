@@ -13,6 +13,8 @@ import ShopItemDetail from "../pages/ShopItemDetail";
 import Cart from "../pages/Cart";
 import ProtectedRoute from "../features/auth/components/ProtectedRoute";
 import Information from "../pages/Information";
+import Payment from "../pages/Payment";
+import OrderHistory from "../pages/OrderHistory";
 
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
         element: <ShopItemDetail />,
       },
       {
+        path: "/orderHistory",
+        element: (
+          <ProtectedRoute>
+            <OrderHistory />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "/cart",
         element: (
           <ProtectedRoute>
@@ -52,6 +62,16 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      ,
+      {
+        path: "/payment",
+        element: (
+          <ProtectedRoute>
+            <Payment />
+          </ProtectedRoute>
+        ),
+      },
+
       {
         path: "/admin/order",
         element: (

@@ -33,10 +33,11 @@ export default function LoginForm() {
       }
       setError({});
       await dispatch(login(input)).unwrap();
-      await dispatch(fetchAllProducts());
+      await dispatch(fetchAllProducts()).unwrap();
       toast.success("login successfully");
       navigate("/");
     } catch (err) {
+      await dispatch(fetchAllProducts()).unwrap();
       toast.error(err);
     }
   };

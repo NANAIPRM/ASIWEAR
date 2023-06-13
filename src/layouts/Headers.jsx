@@ -41,12 +41,24 @@ export default function Header() {
         </button>
         <div className="flex  gap-10 items-center">
           <button onClick={handleChickToShop}>SHOP</button>
-          <button>
-            <WishListIcon />
-          </button>
-          <Link to="/cart">
-            <CartIcon />
-          </Link>
+          {user?.isAdmin ? (
+            <button className=" hidden">
+              <WishListIcon />
+            </button>
+          ) : (
+            <button>
+              <WishListIcon />
+            </button>
+          )}
+          {user?.isAdmin ? (
+            <Link to="/cart" className=" hidden">
+              <CartIcon />
+            </Link>
+          ) : (
+            <Link to="/cart">
+              <CartIcon />
+            </Link>
+          )}
           {isAuthenticated ? (
             <button onClick={handleClickToLogin}>{user.firstName}</button>
           ) : (

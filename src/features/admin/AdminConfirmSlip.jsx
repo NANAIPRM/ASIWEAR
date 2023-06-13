@@ -1,19 +1,53 @@
 import AdminSidebar from "../../layouts/AdminSidebar";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import Loading from "../../components/Loading";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getAllOrder } from "../../features/auth/slice/order-slice";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { updateStatus } from "../../features/auth/slice/order-slice";
 export default function AdminConfirmSlip() {
+  const dispatch = useDispatch();
+  const orders = useSelector((state) => state.order.orders);
+  const loading = useSelector((state) => state.order.loading);
+  const param = useParams();
+
+  const id = param.orderId;
+  const order = orders.find((order) => order.id === +id);
+
+  useEffect(() => {
+    dispatch(getAllOrder()).unwrap();
+  }, []);
+
+  const handleConfirmPayment = async () => {
+    try {
+      await dispatch(updateStatus(id));
+      toast.success("Confirm order successfully");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      <div className="flex mt-[-20px] h-[90vh]">
+      <div className="flex mt-[-20px] max-h-max">
         <AdminSidebar />
-        <div className="flex flex-col w-[90vw] mt-5 bg-green-200  justify-center items-center p-2 border-solid border-2 border-black h-full">
+        <div className="flex flex-col w-[90vw] h-[100vh] mt-5 bg-green-200  justify-center items-center p-2 border-solid border-2 border-black ">
           <img
-            src="https://s.isanook.com/mn/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL21uLzAvdWQvMTIxLzYwNjIxNy8zMzU0NDMuanBn.jpg"
+            src={order.payment}
             alt=""
             className="w-[500px] h-[500px] m-10 border-solid border-2 border-black"
           />
           <div className="w-full flex flex-col gap-4">
-            <button className="text-xl text-white p-2 rounded-lg bg-black ">
+            <button
+              className="text-xl text-white p-2 rounded-lg bg-black "
+              onClick={handleConfirmPayment}
+            >
               CONFIRM SLIP
             </button>
             <Link

@@ -22,6 +22,7 @@ export default function AdminProduct() {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
+
   if (loading) {
     return <Loading />;
   }

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/slice/auth-slice";
 import { updateProduct as resetProduct } from "../features/auth/slice/product-slice";
@@ -9,7 +9,7 @@ export default function Dropdown() {
   const isAdmin = useSelector((state) => state.auth.user.isAdmin);
   const handleLogout = async () => {
     await dispatch(logout()).unwrap();
-    dispatch(resetProduct()); // เรียกใช้งาน resetProduct จาก Slice productSlice
+    dispatch(resetProduct());
     navigate("/");
   };
 
@@ -23,8 +23,8 @@ export default function Dropdown() {
       <button onClick={handleLogout}>Logout</button>{" "}
     </div>
   ) : (
-    <div className="bg-[#59FFC3] shadow-[0_0_15px_rgb(0_0_0_/0.2)] w-[100px] h-min-max p-4 rounded-lg flex flex-col justify-center items-center gap-5">
-      <button>Account</button>
+    <div className="bg-[#59FFC3] shadow-[0_0_15px_rgb(0_0_0_/0.2)] w-[120px] h-min-max p-4 rounded-lg flex flex-col justify-center items-center gap-5">
+      <Link to="/orderHistory">MY ORDER</Link>
       <button onClick={handleLogout}>Logout</button>{" "}
     </div>
   );
