@@ -45,7 +45,7 @@ export default function Payment() {
         formData2.append("image", slipFile);
         await dispatch(createOrder(formData2)).unwrap();
         toast.success("Order successfully");
-        navigate("/");
+        navigate("/orderDetail");
       }
     } catch (error) {
       toast.error(error);

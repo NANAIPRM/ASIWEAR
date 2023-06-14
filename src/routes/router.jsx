@@ -15,6 +15,9 @@ import ProtectedRoute from "../features/auth/components/ProtectedRoute";
 import Information from "../pages/Information";
 import Payment from "../pages/Payment";
 import OrderHistory from "../pages/OrderHistory";
+import OrderDetail from "../pages/OrderDetail";
+import OrderHistoryItem from "../pages/OrderHistoryItem";
+import OrderHistoryItemDetail from "../pages/OrderHistoryItemDetail";
 
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -68,6 +71,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Payment />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/orderDetail",
+        element: (
+          <ProtectedRoute>
+            <OrderDetail />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/orderDetail/:orderId",
+        element: (
+          <ProtectedRoute>
+            <OrderHistoryItemDetail />
           </ProtectedRoute>
         ),
       },

@@ -21,3 +21,7 @@ export const UpdateStatus = (id) => {
 export const getAllOrderByUserId = () => {
   return axios.get(`order/myorder`, configWithAuthorization);
 };
+
+export const getOrderByOrderId = (id) => {
+  return axios.get(`order/${id}`, configWithAuthorization);
+};

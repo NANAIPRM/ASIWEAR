@@ -19,9 +19,16 @@ export default function AdminOrderList({ orders }) {
         ))}
       </div>
       <p>{orders.totalAmount}</p>
-      <button className="bg-green-400 m-4 rounded-lg">
-        {orders.orderStatus}
-      </button>
+      {orders.orderStatus === "SUCCESS" ? (
+        <button className="bg-green-400 m-4 rounded-lg">
+          {orders.orderStatus}
+        </button>
+      ) : (
+        <button className="bg-yellow-200 m-4 rounded-lg">
+          {orders.orderStatus}
+        </button>
+      )}
+
       <button onClick={handleClick} className="bg-slate-400 m-4 rounded-lg">
         CONFIRM SLIP
       </button>

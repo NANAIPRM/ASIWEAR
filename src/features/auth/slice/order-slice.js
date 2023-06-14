@@ -53,6 +53,17 @@ export const getAllOrderByUserId = createAsyncThunk(
   }
 );
 
+export const getOrderByOrderId = createAsyncThunk(
+  "order/getOrderByOrderId",
+  async (id, thunkApi) => {
+    try {
+      const res = await orderService.getOrderByOrderId(id);
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
 const orderSlice = createSlice({
   name: "order",
   initialState,
@@ -83,7 +94,11 @@ const orderSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+
       .addCase(getAllOrderByUserId.fulfilled, (state, action) => {
+        state.orders = action.payload;
+      })
+      .addCase(getOrderByOrderId.fulfilled, (state, action) => {
         state.orders = action.payload;
       });
   },
