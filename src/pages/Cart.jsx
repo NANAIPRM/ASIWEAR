@@ -44,7 +44,7 @@ export default function Cart() {
           <Link to="/shop" className="btn btn-error w-1/3">
             BACK TO SHOPPING
           </Link>
-          <Link to="/information" className="btn btn-neutral w-[700px]">
+          <Link to="/payment" className="btn btn-neutral w-[700px]">
             CHECK OUT
           </Link>
         </div>

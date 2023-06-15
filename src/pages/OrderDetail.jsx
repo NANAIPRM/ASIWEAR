@@ -12,17 +12,22 @@ export default function OrderDetail() {
   const user = useSelector((state) => state.auth.user);
   const orders = useSelector((state) => state.order.orders);
   // console.log(user);
-  const getAddress = async () => {
-    const res = await axios.get("http://localhost:8888/address/me", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("accessItem"),
-      },
-    });
-    setAddress(res.data);
-  };
-  useEffect(() => {
-    getAddress();
-  }, []);
+  // console.log(orders[0]?.id);
+
+  // const getAddressByOrderId = async () => {
+  //   const res = await axios.get("http://localhost:8888/address/order", {
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("accessItem"),
+  //     },
+  //     data: {
+  //       orderId: orders[0]?.id,
+  //     },
+  //   });
+  //   setAddress(res.data);
+  // };
+  // useEffect(() => {
+  //   getAddressByOrderId();
+  // }, []);
 
   const lastAddress = address[address.length - 1];
 
@@ -41,14 +46,13 @@ export default function OrderDetail() {
       <div className="flex justify-between items-center w-[70vw] mx-auto mt-16 mb-10">
         <div className="text-2xl">ORDERNO : {lastOrder?.id}</div>
         <div className="bg-[#59FFC3] p-4  h-1/2 rounded-lg shadow-lg  flex-col items-center justify-center ">
-          <div className="text-xl">SHIPPING ADDRESS</div>
+          <div className="text-xl">SHIPPING</div>
           <div className="">
             Name : {user.firstName} {user.lastName}
           </div>
           <div className="">Email : {user.email}</div>
           <div className="">
-            {lastAddress?.addressLine1} {lastAddress?.city}{" "}
-            {lastAddress?.country} {lastAddress?.postalCode}
+            Address : 439 แขวง บางแค เขต บางแค กรุงเทพ 10160
           </div>
         </div>
       </div>

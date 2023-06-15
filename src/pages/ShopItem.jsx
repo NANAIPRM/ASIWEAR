@@ -13,9 +13,9 @@ export default function ShopItem({ products }) {
         <img src={products.img2} className=" object-fill  relative top-24" />
       </figure>
 
-      <div className="card-body flex flex-col justify-between">
+      <div className="card-body flex flex-col justify-between w-full">
         {products.discountPrice !== 0 ? (
-          <button className="btn btn-error cursor-auto">SALE</button>
+          <button className="btn btn-error cursor-auto w-full">SALE</button>
         ) : (
           <button></button>
         )}

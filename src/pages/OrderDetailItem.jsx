@@ -1,5 +1,5 @@
 export default function OrderDetailItem({ OrderDetailItem }) {
-  console.log(OrderDetailItem);
+  // console.log(OrderDetailItem);
   return (
     <div className="flex gap-20  justify-center mb-10">
       <div className="">

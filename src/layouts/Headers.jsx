@@ -3,13 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
+import { getAllCartByUserId } from "../features/auth/slice/cart-slice";
 
 export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const carts = useSelector((state) => state.cart.carts);
 
+  useEffect(() => {
+    dispatch(getAllCartByUserId()).unwrap();
+  }, []);
+
+  console.log(carts);
   const handleClickToLogin = () => {
     if (!isAuthenticated) {
       navigate("/login");
@@ -72,6 +79,9 @@ export default function Header() {
               <Dropdown setOpen={setOpen} />
             </div>
           )}
+          <div className="absolute top-4  right-20 bg-red-300 p-3 w-1 h-1 flex items-center justify-center rounded-full">
+            1
+          </div>
         </div>
       </div>
     </div>

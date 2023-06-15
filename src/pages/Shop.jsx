@@ -26,7 +26,7 @@ export default function Shop() {
         />
       </div>
 
-      <div className="grid grid-cols-3 card  rounded-box place-items-center">
+      <div className="grid grid-cols-3 card w-full rounded-box place-items-center">
         {products?.map((el) => (
           <ShopItem key={el.id} products={el} />
         ))}
