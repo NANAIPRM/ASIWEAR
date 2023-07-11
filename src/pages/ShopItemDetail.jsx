@@ -34,7 +34,7 @@ export default function ShopItemDetail() {
         toast.success("Add cart successfully");
         setQuantity(1);
         setSize("S");
-        window.location.reload();
+        // window.location.reload();
       } else {
         navigate("/login");
       }
