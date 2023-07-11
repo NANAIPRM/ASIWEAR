@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getAllOrder } from "../../features/auth/slice/order-slice";
+import { getAllOrder } from "../../features/slice/order-slice";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { updateStatus } from "../../features/auth/slice/order-slice";
+import { updateStatus } from "../../features/slice/order-slice";
 export default function AdminConfirmSlip() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);

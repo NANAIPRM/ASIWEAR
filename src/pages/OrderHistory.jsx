@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrderByUserId } from "../features/auth/slice/order-slice";
+import { getAllOrderByUserId } from "../features/slice/order-slice";
 import OrderHistoryItem from "./OrderHistoryItem";
 
 export default function OrderHistory() {

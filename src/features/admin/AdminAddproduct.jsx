@@ -4,7 +4,7 @@ import InputForm from "../auth/components/InputForm";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addProducts } from "../auth/slice/product-slice";
+import { addProducts } from "../slice/product-slice";
 import { useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import { useSelector } from "react-redux";

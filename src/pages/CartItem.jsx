@@ -3,7 +3,7 @@ import {
   deleteCartItem,
   getAllCartByUserId,
   updateCartItem,
-} from "../features/auth/slice/cart-slice";
+} from "../features/slice/cart-slice";
 import { useState } from "react";
 import { useEffect } from "react";
 

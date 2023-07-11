@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import OrderDetailItem from "./OrderDetailItem";
 import { useDispatch } from "react-redux";
-import { getAllOrderByUserId } from "../features/auth/slice/order-slice";
+import { getAllOrderByUserId } from "../features/slice/order-slice";
 import { Link } from "react-router-dom";
 export default function OrderDetail() {
   const [address, setAddress] = useState([]);

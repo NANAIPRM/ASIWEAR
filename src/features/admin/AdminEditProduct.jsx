@@ -3,7 +3,7 @@ import LabelForm from "../auth/components/LabelForm";
 import InputForm from "../auth/components/InputForm";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { editProductById, getProductById } from "../auth/slice/product-slice";
+import { editProductById, getProductById } from "../slice/product-slice";
 import AdminSidebar from "../../layouts/AdminSidebar";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";

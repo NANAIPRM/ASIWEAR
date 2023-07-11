@@ -1,10 +1,10 @@
-import AdminSidebar from "../layouts/AdminSidebar";
-import { getAllOrder } from "../features/auth/slice/order-slice";
+import AdminSidebar from "../../layouts/AdminSidebar";
+import { getAllOrder } from "../slice/order-slice";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import AdminOrderList from "./AdminOrderList";
-import Loading from "../components/Loading";
+import AdminOrderList from "../admin/AdminOrderList";
+import Loading from "../../components/Loading";
 
 export default function AdminOrder() {
   const dispatch = useDispatch();

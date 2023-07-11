@@ -6,7 +6,7 @@ import OrderItem from "./Orderitem";
 import { addAddress } from "../api/address-api";
 import AddressLabel from "../features/auth/components/LabelForm";
 import AddressInput from "../features/auth/components/InputForm";
-import { getAllCartByUserId } from "../features/auth/slice/cart-slice";
+import { getAllCartByUserId } from "../features/slice/cart-slice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

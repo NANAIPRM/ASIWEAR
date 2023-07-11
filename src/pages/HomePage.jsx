@@ -8,9 +8,9 @@ export default function HomePage() {
   return (
     <div className="">
       <Header />
-      <div className="flex w-[95vw] mx-auto h-[90vh] items-center">
-        <div className="w-1/2 flex justify-center items-center ">
-          <div className="flex flex-col gap-5">
+      <div className="flex w-[80vw] mx-auto h-[90vh]  justify-between items-center">
+        <div className=" flex justify-center items-center ">
+          <div className="flex flex-col gap-5  justify-between">
             <p className="text-[#E54D4D] text-3xl">PROMOTION</p>
             <p className="text-5xl">WITHIN THIS MONTH</p>
             <div className="flex gap-3 items-center">

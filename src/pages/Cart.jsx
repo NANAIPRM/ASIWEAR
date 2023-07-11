@@ -1,5 +1,5 @@
 import { CartIcon } from "../icons";
-import { getAllCartByUserId } from "../features/auth/slice/cart-slice";
+import { getAllCartByUserId } from "../features/slice/cart-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 export default function Cart() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cart.carts);
+
   const loading = useSelector((state) => state.product.loading);
   useEffect(() => {
     dispatch(getAllCartByUserId()).unwrap();

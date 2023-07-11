@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/slice/auth-slice";
-import { updateProduct as resetProduct } from "../features/auth/slice/product-slice";
+import { updateProduct as resetProduct } from "../features/slice/product-slice";
 import { useSelector } from "react-redux";
 export default function Dropdown() {
   const navigate = useNavigate();

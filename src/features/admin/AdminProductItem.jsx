@@ -1,9 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  fetchAllProducts,
-  removeProductById,
-} from "../features/auth/slice/product-slice";
+import { fetchAllProducts, removeProductById } from "../slice/product-slice";
 export default function AdminProductItem({ products }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();

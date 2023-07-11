@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderByOrderId } from "../features/auth/slice/order-slice";
+import { getOrderByOrderId } from "../features/slice/order-slice";
 import OrderDetailItem from "./OrderDetailItem";
 export default function OrderHistoryItemDetail() {
   const order = useSelector((state) => state.order.orders);

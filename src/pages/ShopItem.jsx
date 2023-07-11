@@ -6,7 +6,7 @@ export default function ShopItem({ products }) {
   };
   return (
     <button
-      className="mb-10 card w-96 bg-base-100 shadow-xl h-[500px]"
+      className="mb-10 card w-96 bg-base-100 shadow-xl h-[550px]"
       onClick={handleClick}
     >
       <figure className="overflow-hidden">

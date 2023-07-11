@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import * as cartService from "../../../api/cart-api";
+import * as cartService from "../../api/cart-api";
 
 const initialState = {
   carts: [],
@@ -58,18 +58,6 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createCart.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createCart.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(createCart.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
       .addCase(getAllCartByUserId.pending, (state) => {
         state.loading = true;
         state.error = null;

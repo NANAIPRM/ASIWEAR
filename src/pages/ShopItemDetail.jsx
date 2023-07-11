@@ -2,9 +2,9 @@ import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProductById } from "../features/auth/slice/product-slice";
+import { getProductById } from "../features/slice/product-slice";
 import { Link } from "react-router-dom";
-import { createCart } from "../features/auth/slice/cart-slice";
+import { createCart } from "../features/slice/cart-slice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +34,7 @@ export default function ShopItemDetail() {
         toast.success("Add cart successfully");
         setQuantity(1);
         setSize("S");
+        window.location.reload();
       } else {
         navigate("/login");
       }

@@ -1,12 +1,12 @@
-import AdminSidebar from "../layouts/AdminSidebar";
+import AdminSidebar from "../../layouts/AdminSidebar";
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchAllProducts } from "../features/auth/slice/product-slice";
+import { fetchAllProducts } from "../../features/slice/product-slice";
 import AdminProductList from "./AdminProductList";
-import Loading from "../components/Loading";
+import Loading from "../../components/Loading";
 
 export default function AdminProduct() {
   const navigate = useNavigate();
@@ -40,14 +40,12 @@ export default function AdminProduct() {
               ADD PRODUCT
             </button>
             <div className="border-solid border-2 border-black">
-              <div className="w-full grid grid-cols-8 bg-slate-300  text-center pt-4">
+              <div className="w-full grid grid-cols-3 bg-slate-300  text-center pt-4">
                 <br />
                 <br />
-                <p className=" font-semibold">Product Name</p>
-                <p className=" font-semibold">Price/pcs</p>
-                <p className=" font-semibold">S</p>
-                <p className=" font-semibold">M</p>
-                <p className=" font-semibold">L</p>
+                <p className=" font-semibold">Name</p>
+                <p className=" font-semibold">Desciption</p>
+                <p className=" font-semibold">Price</p>
               </div>
               <AdminProductList products={products} />
             </div>

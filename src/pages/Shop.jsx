@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
 import { useDispatch } from "react-redux";
-import { fetchAllProducts } from "../features/auth/slice/product-slice";
+import { fetchAllProducts } from "../features/slice/product-slice";
 
 export default function Shop() {
   const products = useSelector((state) => state.product.products);

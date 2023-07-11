@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import validateLogin from "../validator/validate-login";
 import InputErrorMessage from "./InputErrorMessage";
-import { fetchAllProducts } from "../slice/product-slice";
+import { fetchAllProducts } from "../../slice/product-slice";
 
 const initialInput = {
   email: "",
